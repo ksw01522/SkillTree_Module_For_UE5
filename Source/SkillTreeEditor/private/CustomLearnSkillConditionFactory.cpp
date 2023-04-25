@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "CustomLearnSkillConditionFactory.h"
@@ -38,7 +38,7 @@ UObject* UCustomLearnSkillConditionFactory::FactoryCreateNew(UClass* Class, UObj
 
 FText UCustomLearnSkillConditionFactory::GetDisplayName() const
 {
-	return LOCTEXT("Custom Learn Skill Condition Factory Name", "»õ·Î¿î ½ºÅ³ ¹è¿ì±â Á¶°Ç ¸¸µé±â");
+	return LOCTEXT("Custom Learn Skill Condition Factory Name", "ìƒˆë¡œìš´ ìŠ¤í‚¬ ë°°ìš°ê¸° ì¡°ê±´ ë§Œë“¤ê¸°");
 }
 
 #undef LOCTEXT_NAMESPACE

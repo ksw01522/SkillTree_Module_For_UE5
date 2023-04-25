@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SkillTreeFactory.h"
@@ -116,7 +116,7 @@ UObject* USkillTreeFactory::FactoryCreateNew(UClass* Class, UObject* InParent, F
 
 FText USkillTreeFactory::GetDisplayName() const
 {
-	return LOCTEXT("FactoryName", "»õ·Î¿î ½ºÅ³Æ®¸®");
+	return LOCTEXT("FactoryName", "ìƒˆë¡œìš´ ìŠ¤í‚¬íŠ¸ë¦¬");
 }
 
 FString USkillTreeFactory::GetDefaultNewAssetName() const

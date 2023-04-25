@@ -73,8 +73,6 @@ void UEdGraph_SkillTree::RebuildSkillTree()
 					}
 				}
 			}
-
-			CustomNode->RebuildNode();
 		}
 		//간선 리빌드 작업
 		else if (UEdGraphNode_SkillTreeEdge* EdgeNode = Cast<UEdGraphNode_SkillTreeEdge>(Nodes[i]))
@@ -112,6 +110,8 @@ void UEdGraph_SkillTree::RebuildSkillTree()
 
 		Node->InTree = SkillTree;
 		Node->Rename(nullptr, SkillTree, REN_DontCreateRedirectors | REN_DoNotDirty);
+
+		Node->RebuildNode();
 	}
 
 	

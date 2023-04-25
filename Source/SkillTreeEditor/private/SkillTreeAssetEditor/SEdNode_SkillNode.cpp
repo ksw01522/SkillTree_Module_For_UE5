@@ -24,7 +24,7 @@ public:
 	SLATE_BEGIN_ARGS(SCustomGraphPin) {}
 	SLATE_END_ARGS()
 
-		void Construct(const FArguments& InArgs, UEdGraphPin* InPin)
+	void Construct(const FArguments& InArgs, UEdGraphPin* InPin)
 	{
 		this->SetCursor(EMouseCursor::Default);
 

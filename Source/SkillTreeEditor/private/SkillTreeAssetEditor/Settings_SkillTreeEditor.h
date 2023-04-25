@@ -10,7 +10,7 @@ enum class EAutoLayoutStrategy : uint8
 	ForceDirected,
 };
 
-UCLASS()
+UCLASS(Config = DefaultEditor)
 class USkillTreeEditorSettings : public UObject
 {
 	GENERATED_BODY()
@@ -39,4 +39,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, AdvancedDisplay, Category = "AutoArrange")
 	float CoolDownRate;
+
+	//UPROPERTY(EditDefaultsOnly, Category = "SkillNode")
+
 };
