@@ -82,8 +82,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "SkillNode_Editor", meta = (ClampMin = "0", EditCondition = "bIsChildrenLimit", EditConditionHides))
 	int32 ChildrenLimit;
-
-
+	
 #endif
 
 #if WITH_EDITOR
@@ -96,6 +95,12 @@ public:
 	virtual bool CanCreateConnectionFrom(USkillNode* Other, int32 NumberOfParentNodes, FText& ErrorMessage) { return true; }
 
 	virtual void RebuildNode() {};
+
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+
+	DECLARE_EVENT_OneParam(USkillNode, FSkillNodePropertyChanged, const FPropertyChangedEvent& /* PropertyChangedEvent */);
+	FSkillNodePropertyChanged OnSkillNodePropertyChanged;
+
 
 #endif
 

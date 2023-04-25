@@ -208,7 +208,7 @@ void UEdGraphSchema_SkillTree::GetGraphContextActions(FGraphContextMenuBuilder& 
 		Desc = SkillClass.GetDefaultObject()->ContextMenuName;
 		TSharedPtr<FEdSchemaAction_SkillTree_NewNode> NewNodeAction(new FEdSchemaAction_SkillTree_NewNode(GetNodeCategoryName(), Desc, AddToolTip, 0));
 		NewNodeAction->NodeTemplate = NewObject<UEdGraphNode_SkillNode>(ContextMenuBuilder.OwnerOfTemporaries);
-		NewNodeAction->NodeTemplate->SkillNode = NewObject<USkillNode>(NewNodeAction->NodeTemplate);
+		NewNodeAction->NodeTemplate->SetSkillNode( NewObject<USkillNode>(NewNodeAction->NodeTemplate));
 		NewNodeAction->NodeTemplate->SkillNode->InTree = SkillTree;
 		ContextMenuBuilder.AddAction(NewNodeAction);
 
@@ -233,7 +233,7 @@ void UEdGraphSchema_SkillTree::GetGraphContextActions(FGraphContextMenuBuilder& 
 
 			TSharedPtr<FEdSchemaAction_SkillTree_NewNode> ChildNewNodeAction(new FEdSchemaAction_SkillTree_NewNode(GetNodeCategoryName(), Desc, AddToolTip, 0));
 			ChildNewNodeAction->NodeTemplate = NewObject<UEdGraphNode_SkillNode>(ContextMenuBuilder.OwnerOfTemporaries);
-			ChildNewNodeAction->NodeTemplate->SkillNode = NewObject<USkillNode>(ChildNewNodeAction->NodeTemplate, NodeType);
+			ChildNewNodeAction->NodeTemplate->SetSkillNode( NewObject<USkillNode>(ChildNewNodeAction->NodeTemplate, NodeType));
 			ChildNewNodeAction->NodeTemplate->SkillNode->InTree = SkillTree;
 			ContextMenuBuilder.AddAction(ChildNewNodeAction);
 

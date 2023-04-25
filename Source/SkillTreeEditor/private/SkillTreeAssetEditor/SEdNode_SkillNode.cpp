@@ -99,6 +99,8 @@ void SEdNode_SkillNode::UpdateGraphNode()
 	RightNodeBox.Reset();
 	LeftNodeBox.Reset();
 
+	ErrorColor = SkillTreeColors::NodeBody::Error;
+
 	TSharedPtr<SCompoundWidget> NodeBody = CreateNodeBody().ToSharedRef();
 	
 
@@ -148,8 +150,9 @@ void SEdNode_SkillNode::UpdateGraphNode()
 	// Create comment bubble
 	CreateCommentBubble();
 	
-	
 	CreatePinWidgets();
+
+	CheckError();
 }
 
 
@@ -221,6 +224,11 @@ FText SEdNode_SkillNode::GetDescription() const
 	return FText::GetEmpty();
 }
 
+void SEdNode_SkillNode::CheckError()
+{
+	SetupErrorReporting();
+}
+
 TSharedPtr<SCommentBubble> SEdNode_SkillNode::CreateCommentBubble()
 {
 	TSharedPtr<SCommentBubble> CommentBubble;
@@ -254,7 +262,6 @@ TSharedPtr<SCompoundWidget> SEdNode_SkillNode::CreateNodeBody()
 	TSharedPtr<SBorder> NodeBody;
 
 	FLinearColor TitleShadowColor(0.6f, 0.6f, 0.6f);
-	TSharedPtr<SErrorText> ErrorText;
 	const FSlateBrush* NodeTypeIcon = GetNameIcon();
 	TSharedPtr<SNodeTitle> NodeTitle = SNew(SNodeTitle, EdSkillNode);
 	
@@ -277,7 +284,7 @@ TSharedPtr<SCompoundWidget> SEdNode_SkillNode::CreateNodeBody()
 			+ SHorizontalBox::Slot()
 			.AutoWidth()
 			[
-				SAssignNew(ErrorText, SErrorText)
+				SAssignNew(ErrorReporting, SErrorText)
 				.BackgroundColor(this, &SEdNode_SkillNode::GetErrorColor)
 				.ToolTipText(this, &SEdNode_SkillNode::GetErrorMsgToolTip)
 			]
@@ -329,11 +336,10 @@ TSharedPtr<SCompoundWidget> SEdNode_SkillNode::CreateNodeBody()
 	];
 
 
-	ErrorReporting = ErrorText;
-	ErrorReporting->SetError(ErrorMsg);
-
 	return NodeBody;
 }
+
+
 
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 

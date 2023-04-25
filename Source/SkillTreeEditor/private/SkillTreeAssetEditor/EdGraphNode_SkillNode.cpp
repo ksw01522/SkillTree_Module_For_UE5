@@ -1,10 +1,13 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SkillTreeAssetEditor/EdGraphNode_SkillNode.h"
 #include "SkillTreeAssetEditor/EdGraph_SkillTree.h"
 #include "Kismet2/Kismet2NameValidators.h"
 #include "Kismet2/BlueprintEditorUtils.h"
+#include "SkillAbility.h"
+#include "SEdNode_SkillNode.h"
+#include "SkillTreeEditor.h"
 
 #define LOCTEXT_NAMESPACE "EdGraphNode_SkillNode"
 
@@ -82,18 +85,68 @@ USkillNode* UEdGraphNode_SkillNode::GetSkillNode() const
 	return SkillNode;
 }
 
+void UEdGraphNode_SkillNode::RegisterListeners()
+{
+	SkillNode->OnSkillNodePropertyChanged.AddUObject(this, &UEdGraphNode_SkillNode::OnSkillNodePropertyChanged);
+}
+
+void UEdGraphNode_SkillNode::CheckError()
+{
+	bHasCompilerMessage = false;
+	ErrorMsg.Empty();
+	ErrorType = EMessageSeverity::Info;
+
+	if (SkillNode->SkillInNode.GetDefaultObject() == nullptr) {
+		bHasCompilerMessage = true;
+		ErrorType = EMessageSeverity::Error;
+		ErrorMsg = "Can't find SkillAbility in node.";
+	}
+
+	if(SEdNode != nullptr) SEdNode->CheckError();
+}
+
 void UEdGraphNode_SkillNode::SetSkillNode(USkillNode* InNode)
 {
 	SkillNode = InNode;
 }
 
-#if WITH_EDITOR
 
 void UEdGraphNode_SkillNode::PostEditUndo()
 {
-	UEdGraphNode::PostEditUndo();
+	Super::PostEditUndo();
+	CheckError();
 }
 
-#endif
+void UEdGraphNode_SkillNode::PostLoad()
+{
+	Super::PostLoad();
+	RegisterListeners();
+	CheckError();
+}
+
+void UEdGraphNode_SkillNode::PostEditImport()
+{
+	Super::PostEditImport();
+	RegisterListeners();
+	CheckError();
+}
+
+void UEdGraphNode_SkillNode::PostPlacedNewNode()
+{
+	Super::PostPlacedNewNode();
+	RegisterListeners();
+	CheckError();
+}
+
+void UEdGraphNode_SkillNode::OnSkillNodePropertyChanged(const FPropertyChangedEvent& PropertyChangedEvent)
+{
+	if (!PropertyChangedEvent.Property)
+	{
+		return;
+	}
+
+	CheckError();
+}
+
 
 #undef LOCTEXT_NAMSPACE

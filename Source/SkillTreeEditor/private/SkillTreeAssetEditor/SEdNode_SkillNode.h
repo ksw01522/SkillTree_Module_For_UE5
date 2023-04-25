@@ -54,8 +54,11 @@ public:
 
 	virtual FText GetDescription() const;
 
+	void CheckError();
+
 protected:
 	TSharedPtr<class SCommentBubble> CreateCommentBubble();
 	virtual TSharedPtr<SCompoundWidget> CreateNodeBody();
+
 };
 

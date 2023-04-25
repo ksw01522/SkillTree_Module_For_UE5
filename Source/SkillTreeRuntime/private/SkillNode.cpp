@@ -69,4 +69,11 @@ FText USkillNode::GetNodeTitle() const
     return GetSkillName();
 }
 
+void USkillNode::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+    Super::PostEditChangeProperty(PropertyChangedEvent);
+
+    OnSkillNodePropertyChanged.Broadcast(PropertyChangedEvent);
+}
+
 #undef LOCTEXT_NAMESPACE

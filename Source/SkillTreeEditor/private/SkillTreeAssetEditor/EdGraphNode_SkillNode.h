@@ -26,7 +26,13 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Instanced, Category = "SkillTree")
 	USkillNode* SkillNode;
+
+protected:
+	void RegisterListeners();
 	
+	void CheckError();
+
+public:
 	void SetSkillNode(USkillNode* InNode);
 	UEdGraph_SkillTree* GetSkillTreeEdGraph();
 
@@ -44,7 +50,12 @@ public:
 
 	USkillNode* GetSkillNode() const;
 
-#if WITH_EDITOR
 	virtual void PostEditUndo() override;
-#endif
+	
+	virtual void PostLoad() override;
+	virtual void PostEditImport() override;
+	virtual void PostPlacedNewNode() override;
+
+	virtual void OnSkillNodePropertyChanged(const FPropertyChangedEvent& PropertyChangedEvent);
+
 };
