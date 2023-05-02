@@ -2,7 +2,7 @@
 
 USkillTreeEditorSettings::USkillTreeEditorSettings()
 {
-	AutoLayoutStrategy = EAutoLayoutStrategy::Tree;
+	AutoLayoutStrategy = EAutoLayoutStrategy_STE::Tree;
 
 	bFirstPassOnly = false;
 

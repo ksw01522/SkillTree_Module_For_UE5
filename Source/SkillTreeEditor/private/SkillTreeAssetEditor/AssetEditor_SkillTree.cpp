@@ -18,8 +18,8 @@
 #include "EdGraphUtilities.h"
 #include "SkillTreeAssetEditor/EdGraphNode_SkillNode.h"
 #include "SkillTreeAssetEditor/EdGraphNode_SkillTreeEdge.h"
-#include "AutoLayout/TreeLayoutStrategy.h"
-#include "AutoLayout/ForceDirectedLayoutStrategy.h"
+#include "AutoLayout/TreeLayoutStrategy_STE.h"
+#include "AutoLayout/ForceDirectedLayoutStrategy_STE.h"
 
 #define LOCTEXT_NAMESPACE "AssetEditor_SkillTree"
 
@@ -718,10 +718,10 @@ void FAssetEditor_SkillTree::AutoArrange()
 	UAutoLayoutStrategy_STE* LayoutStrategy = nullptr;
 	switch (SkillTreeEditorSettings->AutoLayoutStrategy)
 	{
-	case EAutoLayoutStrategy::Tree:
+	case EAutoLayoutStrategy_STE::Tree:
 		LayoutStrategy = NewObject<UAutoLayoutStrategy_STE>(EdGraph, UTreeLayoutStrategy_STE::StaticClass());
 		break;
-	case EAutoLayoutStrategy::ForceDirected:
+	case EAutoLayoutStrategy_STE::ForceDirected:
 		LayoutStrategy = NewObject<UAutoLayoutStrategy_STE>(EdGraph, UForceDirectedLayoutStrategy_STE::StaticClass());
 		break;
 	default:

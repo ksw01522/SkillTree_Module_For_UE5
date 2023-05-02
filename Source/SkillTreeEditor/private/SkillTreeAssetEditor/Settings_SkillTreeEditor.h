@@ -4,7 +4,7 @@
 #include "Settings_SkillTreeEditor.generated.h"
 
 UENUM(BlueprintType)
-enum class EAutoLayoutStrategy : uint8
+enum class EAutoLayoutStrategy_STE : uint8
 {
 	Tree,
 	ForceDirected,
@@ -23,7 +23,7 @@ public:
 	float OptimalDistance;
 
 	UPROPERTY(EditDefaultsOnly, AdvancedDisplay, Category = "AutoArrange")
-	EAutoLayoutStrategy AutoLayoutStrategy;
+	EAutoLayoutStrategy_STE AutoLayoutStrategy;
 
 	UPROPERTY(EditDefaultsOnly, AdvancedDisplay, Category = "AutoArrange")
 	int32 MaxIteration;

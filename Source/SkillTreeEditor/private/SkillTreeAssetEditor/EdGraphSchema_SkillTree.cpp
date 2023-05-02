@@ -9,8 +9,8 @@
 #include "SkillTreeAssetEditor/ConnectionDrawingPolicy_SkillTree.h"
 #include "GraphEditorActions.h"
 #include "Framework/Commands/GenericCommands.h"
-#include "AutoLayout/ForceDirectedLayoutStrategy.h"
-#include "AutoLayout/TreeLayoutStrategy.h"
+#include "AutoLayout/ForceDirectedLayoutStrategy_STE.h"
+#include "AutoLayout/TreeLayoutStrategy_STE.h"
 #include "SkillNode.h"
 
 #define LOCTEXT_NAMESPACE "EdSchema_SkillTree"
