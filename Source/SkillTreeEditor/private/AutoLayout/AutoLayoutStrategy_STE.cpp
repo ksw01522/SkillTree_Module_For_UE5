@@ -1,20 +1,20 @@
-#include "AutoLayout/AutoLayoutStrategy.h"
+#include "AutoLayout/AutoLayoutStrategy_STE.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "SkillTreeAssetEditor/SEdNode_SkillNode.h"
 
-UAutoLayoutStrategy::UAutoLayoutStrategy()
+UAutoLayoutStrategy_STE::UAutoLayoutStrategy_STE()
 {
 	Settings = nullptr;
 	MaxIteration = 50;
 	OptimalDistance = 150;
 }
 
-UAutoLayoutStrategy::~UAutoLayoutStrategy()
+UAutoLayoutStrategy_STE::~UAutoLayoutStrategy_STE()
 {
 
 }
 
-FBox2D UAutoLayoutStrategy::GetNodeBound(UEdGraphNode* EdNode)
+FBox2D UAutoLayoutStrategy_STE::GetNodeBound(UEdGraphNode* EdNode)
 {
 	int32 NodeWidth = GetNodeWidth(Cast<UEdGraphNode_SkillNode>(EdNode));
 	int32 NodeHeight = GetNodeHeight(Cast<UEdGraphNode_SkillNode>(EdNode));
@@ -23,7 +23,7 @@ FBox2D UAutoLayoutStrategy::GetNodeBound(UEdGraphNode* EdNode)
 	return FBox2D(Min, Max);
 }
 
-FBox2D UAutoLayoutStrategy::GetActualBounds(USkillNode* RootNode)
+FBox2D UAutoLayoutStrategy_STE::GetActualBounds(USkillNode* RootNode)
 {
 	int Level = 0;
 	TArray<USkillNode*> CurrLevelNodes = { RootNode };
@@ -53,7 +53,7 @@ FBox2D UAutoLayoutStrategy::GetActualBounds(USkillNode* RootNode)
 	return Rtn;
 }
 
-void UAutoLayoutStrategy::RandomLayoutOneTree(USkillNode* RootNode, const FBox2D& Bound)
+void UAutoLayoutStrategy_STE::RandomLayoutOneTree(USkillNode* RootNode, const FBox2D& Bound)
 {
 	int Level = 0;
 	TArray<USkillNode*> CurrLevelNodes = { RootNode };
@@ -83,12 +83,12 @@ void UAutoLayoutStrategy::RandomLayoutOneTree(USkillNode* RootNode, const FBox2D
 	}
 }
 
-int32 UAutoLayoutStrategy::GetNodeWidth(UEdGraphNode_SkillNode* EdNode)
+int32 UAutoLayoutStrategy_STE::GetNodeWidth(UEdGraphNode_SkillNode* EdNode)
 {
 	return EdNode->SEdNode->GetCachedGeometry().GetLocalSize().X;
 }
 
-int32 UAutoLayoutStrategy::GetNodeHeight(UEdGraphNode_SkillNode* EdNode)
+int32 UAutoLayoutStrategy_STE::GetNodeHeight(UEdGraphNode_SkillNode* EdNode)
 {
 	return EdNode->SEdNode->GetCachedGeometry().GetLocalSize().Y;
 }

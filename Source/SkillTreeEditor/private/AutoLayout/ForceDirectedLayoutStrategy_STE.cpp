@@ -1,4 +1,4 @@
-#include "AutoLayout/ForceDirectedLayoutStrategy.h"
+#include "AutoLayout/ForceDirectedLayoutStrategy_STE.h"
 
 static inline float CoolDown(float Temp, float CoolDownRate)
 {
@@ -16,19 +16,19 @@ static inline float GetRepulseForce(float X, float k)
 	return X != 0 ? k * k / X : TNumericLimits<float>::Max();
 }
 
-UForceDirectedLayoutStrategy::UForceDirectedLayoutStrategy()
+UForceDirectedLayoutStrategy_STE::UForceDirectedLayoutStrategy_STE()
 {
 	bRandomInit = false;
 	CoolDownRate = 10;
 	InitTemperature = 10.f;
 }
 
-UForceDirectedLayoutStrategy::~UForceDirectedLayoutStrategy()
+UForceDirectedLayoutStrategy_STE::~UForceDirectedLayoutStrategy_STE()
 {
 
 }
 
-void UForceDirectedLayoutStrategy::Layout(UEdGraph* _EdGraph)
+void UForceDirectedLayoutStrategy_STE::Layout(UEdGraph* _EdGraph)
 {
 	EdGraph = Cast<UEdGraph_SkillTree>(_EdGraph);
 	check(EdGraph != nullptr);
@@ -51,7 +51,7 @@ void UForceDirectedLayoutStrategy::Layout(UEdGraph* _EdGraph)
 	}
 }
 
-FBox2D UForceDirectedLayoutStrategy::LayoutOneTree(USkillNode* RootNode, const FBox2D& PreTreeBound)
+FBox2D UForceDirectedLayoutStrategy_STE::LayoutOneTree(USkillNode* RootNode, const FBox2D& PreTreeBound)
 {
 	float Temp = InitTemperature;
 	FBox2D TreeBound = GetActualBounds(RootNode);

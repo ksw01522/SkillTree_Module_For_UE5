@@ -40,6 +40,5 @@ public:
 	UPROPERTY(EditDefaultsOnly, AdvancedDisplay, Category = "AutoArrange")
 	float CoolDownRate;
 
-	//UPROPERTY(EditDefaultsOnly, Category = "SkillNode")
 
 };

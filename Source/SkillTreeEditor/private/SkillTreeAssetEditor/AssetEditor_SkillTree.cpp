@@ -715,14 +715,14 @@ void FAssetEditor_SkillTree::AutoArrange()
 
 	EdGraph->Modify();
 
-	UAutoLayoutStrategy* LayoutStrategy = nullptr;
+	UAutoLayoutStrategy_STE* LayoutStrategy = nullptr;
 	switch (SkillTreeEditorSettings->AutoLayoutStrategy)
 	{
 	case EAutoLayoutStrategy::Tree:
-		LayoutStrategy = NewObject<UAutoLayoutStrategy>(EdGraph, UTreeLayoutStrategy::StaticClass());
+		LayoutStrategy = NewObject<UAutoLayoutStrategy_STE>(EdGraph, UTreeLayoutStrategy_STE::StaticClass());
 		break;
 	case EAutoLayoutStrategy::ForceDirected:
-		LayoutStrategy = NewObject<UAutoLayoutStrategy>(EdGraph, UForceDirectedLayoutStrategy::StaticClass());
+		LayoutStrategy = NewObject<UAutoLayoutStrategy_STE>(EdGraph, UForceDirectedLayoutStrategy_STE::StaticClass());
 		break;
 	default:
 		break;

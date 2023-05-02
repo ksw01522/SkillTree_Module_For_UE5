@@ -7,15 +7,15 @@
 #include "SkillTreeAssetEditor/EdGraphNode_SkillNode.h"
 #include "SkillTreeAssetEditor/EdGraphNode_SkillTreeEdge.h"
 #include "SkillTreeAssetEditor/Settings_SkillTreeEditor.h"
-#include "AutoLayoutStrategy.generated.h"
+#include "AutoLayoutStrategy_STE.generated.h"
 
 UCLASS(abstract)
-class UAutoLayoutStrategy : public UObject
+class UAutoLayoutStrategy_STE : public UObject
 {
 	GENERATED_BODY()
 public:
-	UAutoLayoutStrategy();
-	virtual ~UAutoLayoutStrategy();
+	UAutoLayoutStrategy_STE();
+	virtual ~UAutoLayoutStrategy_STE();
 
 	virtual void Layout(UEdGraph* G) {};
 

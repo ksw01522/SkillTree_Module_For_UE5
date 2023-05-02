@@ -1,16 +1,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AutoLayoutStrategy.h"
-#include "TreeLayoutStrategy.generated.h"
+#include "AutoLayoutStrategy_STE.h"
+#include "TreeLayoutStrategy_STE.generated.h"
 
 UCLASS()
-class UTreeLayoutStrategy : public UAutoLayoutStrategy
+class UTreeLayoutStrategy_STE : public UAutoLayoutStrategy_STE
 {
 	GENERATED_BODY()
 public:
-	UTreeLayoutStrategy();
-	virtual ~UTreeLayoutStrategy();
+	UTreeLayoutStrategy_STE();
+	virtual ~UTreeLayoutStrategy_STE();
 
 	virtual void Layout(UEdGraph* EdGraph) override;
 

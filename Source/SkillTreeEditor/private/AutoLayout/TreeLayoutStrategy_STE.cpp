@@ -1,17 +1,17 @@
-#include "AutoLayout/TreeLayoutStrategy.h"
+#include "AutoLayout/TreeLayoutStrategy_STE.h"
 #include "SkillTreeEditor.h"
 #include "SkillTreeAssetEditor/SEdNode_SkillNode.h"
 
-UTreeLayoutStrategy::UTreeLayoutStrategy()
+UTreeLayoutStrategy_STE::UTreeLayoutStrategy_STE()
 {
 }
 
-UTreeLayoutStrategy::~UTreeLayoutStrategy()
+UTreeLayoutStrategy_STE::~UTreeLayoutStrategy_STE()
 {
 
 }
 
-void UTreeLayoutStrategy::Layout(UEdGraph* _EdGraph)
+void UTreeLayoutStrategy_STE::Layout(UEdGraph* _EdGraph)
 {
 	EdGraph = Cast<UEdGraph_SkillTree>(_EdGraph);
 	check(EdGraph != nullptr);
@@ -57,7 +57,7 @@ void UTreeLayoutStrategy::Layout(UEdGraph* _EdGraph)
 	}
 }
 
-void UTreeLayoutStrategy::InitPass(USkillNode* RootNode, const FVector2D& Anchor)
+void UTreeLayoutStrategy_STE::InitPass(USkillNode* RootNode, const FVector2D& Anchor)
 {
 	UEdGraphNode_SkillNode* EdNode_RootNode = EdGraph->NodeMap[RootNode];
 
@@ -89,7 +89,7 @@ void UTreeLayoutStrategy::InitPass(USkillNode* RootNode, const FVector2D& Anchor
 	}
 }
 
-bool UTreeLayoutStrategy::ResolveConflictPass(USkillNode* Node)
+bool UTreeLayoutStrategy_STE::ResolveConflictPass(USkillNode* Node)
 {
 	bool HasConflict = false;
 	for (int32 i = 0; i < Node->ChildNodes.Num(); ++i)
@@ -119,7 +119,7 @@ bool UTreeLayoutStrategy::ResolveConflictPass(USkillNode* Node)
 	return HasConflict;
 }
 
-bool UTreeLayoutStrategy::ResolveConflict(USkillNode* LRoot, USkillNode* RRoot)
+bool UTreeLayoutStrategy_STE::ResolveConflict(USkillNode* LRoot, USkillNode* RRoot)
 {
 	TArray<UEdGraphNode_SkillNode*> RightContour, LeftContour;
 
@@ -169,7 +169,7 @@ bool UTreeLayoutStrategy::ResolveConflict(USkillNode* LRoot, USkillNode* RRoot)
 	}
 }
 
-void UTreeLayoutStrategy::GetLeftContour(USkillNode* RootNode, int32 Level, TArray<UEdGraphNode_SkillNode*>& Contour)
+void UTreeLayoutStrategy_STE::GetLeftContour(USkillNode* RootNode, int32 Level, TArray<UEdGraphNode_SkillNode*>& Contour)
 {
 	UEdGraphNode_SkillNode* EdNode_Node = EdGraph->NodeMap[RootNode];
 	if (Level >= Contour.Num())
@@ -187,7 +187,7 @@ void UTreeLayoutStrategy::GetLeftContour(USkillNode* RootNode, int32 Level, TArr
 	}
 }
 
-void UTreeLayoutStrategy::GetRightContour(USkillNode* RootNode, int32 Level, TArray<UEdGraphNode_SkillNode*>& Contour)
+void UTreeLayoutStrategy_STE::GetRightContour(USkillNode* RootNode, int32 Level, TArray<UEdGraphNode_SkillNode*>& Contour)
 {
 	UEdGraphNode_SkillNode* EdNode_Node = EdGraph->NodeMap[RootNode];
 	if (Level >= Contour.Num())
@@ -205,7 +205,7 @@ void UTreeLayoutStrategy::GetRightContour(USkillNode* RootNode, int32 Level, TAr
 	}
 }
 
-void UTreeLayoutStrategy::ShiftSubTree(USkillNode* RootNode, const FVector2D& Offset)
+void UTreeLayoutStrategy_STE::ShiftSubTree(USkillNode* RootNode, const FVector2D& Offset)
 {
 	UEdGraphNode_SkillNode* EdNode_Node = EdGraph->NodeMap[RootNode];
 	EdNode_Node->NodePosX += Offset.X;
@@ -222,7 +222,7 @@ void UTreeLayoutStrategy::ShiftSubTree(USkillNode* RootNode, const FVector2D& Of
 	}
 }
 
-void UTreeLayoutStrategy::UpdateParentNodePosition(USkillNode* ParentNode)
+void UTreeLayoutStrategy_STE::UpdateParentNodePosition(USkillNode* ParentNode)
 {
 	UEdGraphNode_SkillNode* EdNode_ParentNode = EdGraph->NodeMap[ParentNode];
 	if (ParentNode->ChildNodes.Num() % 2 == 0)

@@ -11,7 +11,7 @@
 
 class UEdGraphNode_SkillNode;
 class UEdGraphNode_SkillTreeEdge;
-class UAutoLayoutStrategy;
+class UAutoLayoutStrategy_STE;
 
 
 USTRUCT()

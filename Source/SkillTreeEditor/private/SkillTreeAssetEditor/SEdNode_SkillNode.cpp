@@ -102,7 +102,6 @@ void SEdNode_SkillNode::UpdateGraphNode()
 	ErrorColor = SkillTreeColors::NodeBody::Error;
 
 	TSharedPtr<SCompoundWidget> NodeBody = CreateNodeBody().ToSharedRef();
-	
 
 	this->ContentScale.Bind(this, &SGraphNode::GetContentScale);
 	this->GetOrAddSlot(ENodeZone::Center)
